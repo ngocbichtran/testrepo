@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo DataTables Cơ Bản - Hà Võ Thanh Tân</title>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #333; }
+        /* Tùy chỉnh màu nền cho header bảng cho đẹp hơn */
+        thead { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h2>Demo DataTables Cơ Bản</h2>
+    <p>Các tính năng: Phân trang, Tìm kiếm, Sắp xếp, Cấu hình ngôn ngữ Tiếng Việt.</p>
+    <hr>
+
+    <table id="myTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Vị trí</th>
+                <th>Văn phòng</th>
+                <th>Tuổi</th>
+                <th>Ngày bắt đầu</th>
+                <th>Lương</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Trần Văn Tài</td><td>Developer</td><td>TP.HCM</td><td>22</td><td>2023/01/15</td><td>$800</td></tr>
+            <tr><td>Hà Võ Thanh Tân</td><td>IT Student</td><td>TP.HCM</td><td>21</td><td>2022/09/05</td><td>$500</td></tr>
+            <tr><td>Nguyễn Thị A</td><td>Tester</td><td>Hà Nội</td><td>25</td><td>2021/11/20</td><td>$900</td></tr>
+            <tr><td>Lê Văn B</td><td>Manager</td><td>Đà Nẵng</td><td>35</td><td>2018/03/10</td><td>$2000</td></tr>
+            <tr><td>Phạm Thị C</td><td>Accountant</td><td>Cần Thơ</td><td>28</td><td>2020/06/14</td><td>$1200</td></tr>
+            <tr><td>Hoàng Văn D</td><td>Director</td><td>TP.HCM</td><td>45</td><td>2010/01/01</td><td>$5000</td></tr>
+            <tr><td>Ngô Thị E</td><td>HR</td><td>Hà Nội</td><td>26</td><td>2021/05/15</td><td>$850</td></tr>
+            <tr><td>Vũ Văn F</td><td>Security</td><td>TP.HCM</td><td>50</td><td>2015/08/22</td><td>$600</td></tr>
+            <tr><td>Đặng Thị G</td><td>Sales</td><td>Đà Nẵng</td><td>23</td><td>2023/02/11</td><td>$700</td></tr>
+            <tr><td>Bùi Văn H</td><td>Marketing</td><td>TP.HCM</td><td>24</td><td>2022/12/01</td><td>$750</td></tr>
+            <tr><td>Lý Thị I</td><td>Support</td><td>Hà Nội</td><td>22</td><td>2023/05/20</td><td>$650</td></tr>
+            <tr><td>Trương Văn K</td><td>DevOps</td><td>TP.HCM</td><td>30</td><td>2019/09/19</td><td>$1500</td></tr>
+            <tr><td>Đỗ Thị L</td><td>Designer</td><td>Cần Thơ</td><td>27</td><td>2020/10/10</td><td>$1100</td></tr>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                // --- CẤU HÌNH CƠ BẢN ---
+                // a. Số dòng hiển thị (Phân trang)
+                "paging": true,          // Bật/Tắt phân trang (Mặc định là true)
+                "pageLength": 5,         // Số dòng hiển thị mặc định
+                "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Tất cả"]], // Tùy chọn số dòng
+                // b. Tắt/Bật tìm kiếm
+                "searching": true,       // true: Bật, false: Tắt thanh tìm kiếm
+                // c. Tắt/Bật sắp xếp
+                "ordering": true,        // true: Bật, false: Tắt click vào tiêu đề để sắp xếp
+                // d. Cột cụ thể (Ví dụ: Tắt sắp xếp ở cột "Họ tên" - cột số 0)
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 } 
+                ],
+                // e. Tùy chỉnh ngôn ngữ (Việt hóa)
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Không có dữ liệu trong bảng",
+                    "info":           "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ dòng",
+                    "infoEmpty":      "Hiển thị 0 đến 0 trong tổng số 0 dòng",
+                    "infoFiltered":   "(lọc từ tổng số _MAX_ dòng)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Hiển thị _MENU_ dòng",
+                    "loadingRecords": "Đang tải...",
+                    "processing":     "Đang xử lý...",
+                    "search":         "Tìm kiếm:",
+                    "zeroRecords":    "Không tìm thấy kết quả phù hợp",
+                    "paginate": {
+                        "first":      "Đầu",
+                        "last":       "Cuối",
+                        "next":       "Tiếp",
+                        "previous":   "Trước"
+                    },
+                    "aria": {
+                        "sortAscending":  ": kích hoạt để sắp xếp cột tăng dần",
+                        "sortDescending": ": kích hoạt để sắp xếp cột giảm dần"
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
